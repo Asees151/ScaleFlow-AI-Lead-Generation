@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1d2939;
+         background:#eef3f9; background-image:radial-gradient(#d6dfeb 1px, transparent 1px);
+         background-size:22px 22px; }
+  .page { width:1440px; padding:44px 48px 40px; }
+  .eyebrow { color:#3f6598; font-size:13px; font-weight:700; letter-spacing:2px; }
+  h1 { font-size:40px; color:#12395f; margin-top:2px; letter-spacing:-0.5px; }
+  .subtitle { font-size:15.5px; color:#4a6a8a; margin-top:6px; }
+  .subtitle b { color:#b5651d; }
+  .pill.hl { background:#b5651d; color:#fff; border-color:#b5651d; }
+
+  .callout { margin-top:26px; background:#fdf6e0; border-left:7px solid #b0402e; border-radius:10px;
+             padding:18px 24px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .callout .lbl { color:#b0402e; font-size:12px; font-weight:800; letter-spacing:1.5px; }
+  .callout p { font-size:16px; line-height:1.5; margin:4px 0 12px; color:#4a3b28; }
+  .callout .cost { font-size:17px; font-weight:700; color:#8a2b20; margin-bottom:0; }
+
+  .tools { margin-top:20px; background:#fbfdff; border:1px solid #dce6f2; border-radius:12px; padding:16px 22px; }
+  .tools .lbl { color:#3f6598; font-size:12px; font-weight:800; letter-spacing:1.5px; }
+  .pills { margin-top:10px; display:flex; flex-wrap:wrap; gap:9px; }
+  .pill { border:1.5px solid #b9cbe0; border-radius:20px; padding:5px 14px; font-size:13px; color:#274b70; background:#fff; font-weight:600; }
+
+  .stage { margin-top:24px; background:#f7fafd; border:1px solid #e1eaf3; border-radius:16px; padding:22px 26px 30px; }
+  .stage-lbl { color:#5a728f; font-size:12.5px; font-weight:800; letter-spacing:1.5px; margin-bottom:20px; }
+  .flow { display:flex; align-items:stretch; flex-wrap:wrap; row-gap:24px; }
+
+  .node { position:relative; width:214px; background:#fff; border-radius:11px; padding:14px 15px;
+          box-shadow:0 2px 6px rgba(20,50,90,.09); border-top:3px solid var(--ac,#2a6ad9); }
+  .tag { position:absolute; top:-11px; left:14px; background:var(--ac,#2a6ad9); color:#fff;
+         font-size:10px; font-weight:800; letter-spacing:.6px; padding:3px 9px; border-radius:11px; }
+  .nhead { display:flex; align-items:center; gap:9px; margin-top:4px; }
+  .badge { width:26px; height:26px; border-radius:7px; background:var(--ac,#2a6ad9); color:#fff;
+           font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center; flex:0 0 26px; }
+  .ntitle { font-size:15px; font-weight:800; color:#16324f; line-height:1.15; }
+  .ndesc { font-size:12.5px; color:#5c6b7a; margin-top:8px; line-height:1.4; }
+  .nmetric { font-size:12.5px; color:#2a6ad9; font-weight:700; margin-top:8px; }
+
+  .conn { flex:0 0 34px; align-self:center; height:2px; background:#9fb1c6; position:relative; }
+  .conn::after { content:''; position:absolute; right:-1px; top:-4px; border-left:9px solid #9fb1c6;
+                 border-top:5px solid transparent; border-bottom:5px solid transparent; }
+  .conn.tall { align-self:stretch; }
+
+  .diamond { flex:0 0 150px; align-self:center; height:96px; display:flex; align-items:center; justify-content:center;
+             text-align:center; margin:0 6px; position:relative; }
+  .diamond span { position:relative; z-index:2; font-size:13px; font-weight:800; color:#12395f; padding:0 12px; }
+  .diamond::before { content:''; position:absolute; width:74px; height:74px; background:#eaf1fb; border:2px solid #2a6ad9;
+                     transform:rotate(45deg); left:50%; top:50%; margin-left:-37px; margin-top:-37px; border-radius:8px; }
+
+  .branch { display:flex; align-items:center; gap:8px; }
+  .blabel { background:#fff; border:1px solid #cdd8e6; border-radius:14px; padding:3px 11px; font-size:12px; font-weight:700; color:#3f6598; }
+
+  .signals { display:flex; gap:16px; flex-wrap:wrap; }
+  .signals .node { width:246px; }
+
+  .result { margin-top:26px; background:#e9f5ee; border:1px solid #bfe0cd; border-radius:16px; padding:24px 30px; }
+  .result .lbl { color:#2e7d5b; font-size:12.5px; font-weight:800; letter-spacing:1.5px; }
+  .metrics { display:flex; gap:70px; margin-top:14px; }
+  .metric .big { font-size:34px; font-weight:800; color:#123f2b; letter-spacing:-.5px; }
+  .metric .sub { font-size:14px; font-weight:700; color:#1d5038; margin-top:4px; }
+  .metric .fine { font-size:12.5px; color:#4a6a58; margin-top:2px; }
+  .gained { margin-top:20px; }
+  .gained .lbl { color:#2e7d5b; }
+  .gained p { font-size:16px; font-weight:700; color:#123f2b; margin-top:5px; }
+
+  .foot { margin-top:16px; color:#8aa0b5; font-size:12.5px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">SCALEFLOW AI &nbsp;·&nbsp; GTM ENGINEER</div>
+  <h1>Lead Generation Flow</h1>
+  <div class="subtitle">Built &amp; orchestrated end-to-end with <b>Claude Code</b> — the agent brain that wrote the scripts, ran every scraper &amp; API, did the web research, and scored the leads.</div>
+
+  <div class="callout">
+    <div class="lbl">THE PROBLEM</div>
+    <p>A list that just <em>fits</em> the ICP isn't enough. There's no signal for which companies actually need a cold-email tool
+       right now — and a big chunk of scraped emails bounce, so reps can't even reach them.</p>
+    <div class="lbl">WHAT IT WAS COSTING</div>
+    <p class="cost">Reps burn time on cold accounts with no timing signal, and the best-fit prospects get worked by a competitor first.</p>
+  </div>
+
+  <div class="tools">
+    <div class="lbl">TOOLS AND APIS USED</div>
+    <div class="pills">
+      <span class="pill hl">Claude Code — agent brain</span>
+      <span class="pill">Python</span><span class="pill">pandas</span><span class="pill">Playwright + Chrome</span>
+      <span class="pill">Apify — Leads Finder</span><span class="pill">Apify — LinkedIn Jobs</span>
+      <span class="pill">Apify — Profile Posts</span><span class="pill">Apify — Profile Scraper</span>
+      <span class="pill">BlitzAPI — Employee Finder</span><span class="pill">GetLeads</span><span class="pill">Clay</span>
+      <span class="pill">Crunchbase</span><span class="pill">Clutch</span>
+    </div>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="stage">
+    <div class="stage-lbl">STAGE 1 · SOURCE &amp; CLEAN</div>
+    <div class="flow">
+      <div class="node" style="--ac:#2a6ad9"><span class="tag">PLAYWRIGHT + CHROME</span>
+        <div class="nhead"><span class="badge">S</span><span class="ntitle">Companies scraped</span></div>
+        <div class="ndesc">Crunchbase (SaaS) + Clutch (agencies), pulled with a Python script driving real Chrome — beats Cloudflare.</div>
+        <div class="nmetric">~1,730 companies</div></div>
+      <div class="conn"></div>
+      <div class="node" style="--ac:#2e8b7f"><span class="tag">PYTHON · PANDAS</span>
+        <div class="nhead"><span class="badge">C</span><span class="ntitle">Cleaned &amp; merged</span></div>
+        <div class="ndesc">De-duped, normalized, filtered to ICP; captured LinkedIn, site, size, funding.</div>
+        <div class="nmetric">~1,650 clean companies</div></div>
+      <div class="conn"></div>
+      <div class="diamond"><span>ICP fit &amp; has a decision-maker?</span></div>
+    </div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="stage">
+    <div class="stage-lbl">STAGE 2 · DECISION-MAKERS &amp; QUALIFY</div>
+    <div class="flow">
+      <div class="node" style="--ac:#2e9e4f"><span class="tag">APIFY + BLITZAPI</span>
+        <div class="nhead"><span class="badge">D</span><span class="ntitle">Decision-makers found</span></div>
+        <div class="ndesc">Apify Leads Finder + BlitzAPI Employee Finder endpoint pull names, titles &amp; LinkedIn profiles.</div>
+        <div class="nmetric">batch of ~225 enriched</div></div>
+      <div class="conn"></div>
+      <div class="node" style="--ac:#2e9e4f"><span class="tag">PYTHON</span>
+        <div class="nhead"><span class="badge">Q</span><span class="ntitle">Qualified</span></div>
+        <div class="ndesc">Kept the decision-makers, disqualified VP-of-Sales titles as the contact — used another DM instead.</div>
+        <div class="nmetric">100 qualified companies</div></div>
+    </div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="stage">
+    <div class="stage-lbl">STAGE 3 · INTENT SIGNALS  (5, SCORED &amp; WEIGHTED)</div>
+    <div class="signals">
+      <div class="node" style="--ac:#d98a2b"><span class="tag">APIFY JOBS + ATS</span>
+        <div class="nhead"><span class="badge">1</span><span class="ntitle">Hiring</span></div>
+        <div class="ndesc">Apify LinkedIn Jobs actor + reading ATS boards direct — Greenhouse, Lever, Ashby (public APIs).</div>
+        <div class="nmetric">weight +15</div></div>
+      <div class="node" style="--ac:#d98a2b"><span class="tag">APIFY POSTS</span>
+        <div class="nhead"><span class="badge">2</span><span class="ntitle">LinkedIn posts</span></div>
+        <div class="ndesc">Founders posting about cold email / deliverability / outbound.</div>
+        <div class="nmetric">weight +10</div></div>
+      <div class="node" style="--ac:#d98a2b"><span class="tag">APIFY PROFILE</span>
+        <div class="nhead"><span class="badge">3</span><span class="ntitle">New sales hire</span></div>
+        <div class="ndesc">Recently hired a Head of Sales / CRO — building their GTM motion.</div>
+        <div class="nmetric">weight +10</div></div>
+      <div class="node" style="--ac:#d98a2b"><span class="tag">WEB SCAN</span>
+        <div class="nhead"><span class="badge">4</span><span class="ntitle">Tech stack</span></div>
+        <div class="ndesc">Already using Instantly / Outreach / Apollo, or a CRM (HubSpot) — direct fit.</div>
+        <div class="nmetric">weight +12</div></div>
+      <div class="node" style="--ac:#d98a2b"><span class="tag">CRUNCHBASE</span>
+        <div class="nhead"><span class="badge">5</span><span class="ntitle">Recent funding</span></div>
+        <div class="ndesc">Raised recently = budget to buy and try new tools.</div>
+        <div class="nmetric">weight +8</div></div>
+    </div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="stage">
+    <div class="stage-lbl">STAGE 4 · EMAILS, SCORE &amp; DELIVER</div>
+    <div class="flow">
+      <div class="node" style="--ac:#d2453f"><span class="tag">GETLEADS</span>
+        <div class="nhead"><span class="badge">G</span><span class="ntitle">GetLeads first</span></div>
+        <div class="ndesc">Contact-search endpoint by LinkedIn URL, every email domain-checked.</div>
+        <div class="nmetric">~70% of emails</div></div>
+      <div class="conn"></div>
+      <div class="node" style="--ac:#d2453f"><span class="tag">CLAY</span>
+        <div class="nhead"><span class="badge">W</span><span class="ntitle">Clay waterfall</span></div>
+        <div class="ndesc">Multi-vendor waterfall (~10 providers: Hunter, Prospeo, Findymail…) for the rest.</div>
+        <div class="nmetric">remaining ~30% → 100%</div></div>
+      <div class="conn"></div>
+      <div class="node" style="--ac:#7B4FCB"><span class="tag">PYTHON</span>
+        <div class="nhead"><span class="badge">★</span><span class="ntitle">Scored &amp; tiered</span></div>
+        <div class="ndesc">0–100, intent 55 / fit 45 → Tier 1 Hot, Tier 2 Warm, Tier 3 Qualified.</div></div>
+      <div class="conn"></div>
+      <div class="node" style="--ac:#7B4FCB"><span class="tag">DELIVERABLE</span>
+        <div class="nhead"><span class="badge">✓</span><span class="ntitle">Consolidated file</span></div>
+        <div class="ndesc">100 leads, one per company — score, tier, every signal + link, verified email.</div></div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result">
+    <div class="lbl">THE RESULT</div>
+    <div class="metrics">
+      <div class="metric"><div class="big">100 verified</div><div class="sub">Email coverage 100%</div><div class="fine">Every lead is reachable — domain-checked</div></div>
+      <div class="metric"><div class="big">5 signals</div><div class="sub">Hot 14 · Warm 47 · Qualified 41</div><div class="fine">Every lead scored 0–100 and tiered</div></div>
+      <div class="metric"><div class="big">~1,400 reserve</div><div class="sub">Scraped, ready to enrich</div><div class="fine">Scales past 100 anytime</div></div>
+    </div>
+    <div class="gained">
+      <div class="lbl">WHAT IT GAINED US</div>
+      <p>An intent-ranked, fully verified list — reps work the Hot tier first, and every email actually lands.</p>
+    </div>
+  </div>
+
+  <div class="foot">Muhammad Asees Abid · ScaleFlow AI lead-gen take-home</div>
+</div>
+</body>
+</html>
